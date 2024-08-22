@@ -4,7 +4,6 @@
 TARGET = swerve-standard
 
 BOARD = typec
-
 CONTROL_BASE = control-base
 BOARD_BASE = $(CONTROL_BASE)/${BOARD}-board-base
 
@@ -82,11 +81,39 @@ $(BOARD_BASE)/Middlewares/Third_Party/FreeRTOS/Source/timers.c \
 $(BOARD_BASE)/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c \
 $(BOARD_BASE)/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c \
 $(BOARD_BASE)/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/BasicMathFunctions/BasicMathFunctions.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/QuaternionMathFunctions/QuaternionMathFunctions.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/BayesFunctions/BayesFunctions.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/CommonTables/CommonTables.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/ComplexMathFunctions/ComplexMathFunctions.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/ControllerFunctions/ControllerFunctions.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/DistanceFunctions/DistanceFunctions.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/FastMathFunctions/FastMathFunctions.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/FilteringFunctions/FilteringFunctions.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/MatrixFunctions/MatrixFunctions.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/StatisticsFunctions/StatisticsFunctions.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/SupportFunctions/SupportFunctions.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/SVMFunctions/SVMFunctions.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/TransformFunctions/TransformFunctions.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/InterpolationFunctions/InterpolationFunctions.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/BasicMathFunctions/BasicMathFunctionsF16.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/ComplexMathFunctions/ComplexMathFunctionsF16.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/FilteringFunctions/FilteringFunctionsF16.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/CommonTables/CommonTablesF16.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/TransformFunctions/TransformFunctionsF16.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/MatrixFunctions/MatrixFunctionsF16.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/InterpolationFunctions/InterpolationFunctionsF16.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/StatisticsFunctions/StatisticsFunctionsF16.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/SupportFunctions/SupportFunctionsF16.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/FastMathFunctions/FastMathFunctionsF16.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/DistanceFunctions/DistanceFunctionsF16.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/BayesFunctions/BayesFunctionsF16.c \
+$(CONTROL_BASE)/CMSIS-DSP/Source/SVMFunctions/SVMFunctionsF16.c \
 $(wildcard $(CONTROL_BASE)/algo/src/*.c) \
 $(wildcard $(CONTROL_BASE)/bsp/src/*.c) \
 $(wildcard $(CONTROL_BASE)/devices/src/*.c) \
-$(wildcard /app/src/*.c) \
-$(wildcard /ui/src/*.c)
+$(wildcard app/src/*.c) \
+$(wildcard ui/src/*.c)
 
 # ASM sources
 ASM_SOURCES =  \
@@ -151,6 +178,8 @@ C_INCLUDES =  \
 -I$(BOARD_BASE)/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F \
 -I$(BOARD_BASE)/Drivers/CMSIS/Device/ST/STM32F4xx/Include \
 -I$(BOARD_BASE)/Drivers/CMSIS/Include \
+-I$(CONTROL_BASE)/CMSIS-DSP/Include \
+-I$(CONTROL_BASE)/CMSIS-DSP/PrivateInclude \
 -I$(CONTROL_BASE)/algo/inc \
 -I$(CONTROL_BASE)/devices/inc \
 -I$(CONTROL_BASE)/bsp/inc \
@@ -266,4 +295,5 @@ test_download:
 print_sources:
 	@echo "C sources:" $(C_SOURCES)
 	@echo "ASM sources:" $(ASM_SOURCES)
+
 # *** EOF ***
