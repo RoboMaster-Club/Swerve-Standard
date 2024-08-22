@@ -1,0 +1,43 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "CMSIS-DAP",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}${/}build${/}control-base.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "svdFile": "STM32F407.svd",
+            "servertype": "openocd", //GDB server
+            "configFiles": [
+                "${workspaceRoot}${/}config${/}openocd_cmsis_dap.cfg" // config
+            ],
+            //"runToEntryPoint": "main", // stop at main
+            "rtos": "FreeRTOS",
+            "liveWatch": {
+                "enabled": true,
+                "samplesPerSecond": 4
+            },
+            "preLaunchTask": "build" // build before debug
+        },
+        {
+            "name": "ST-LINK",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}${/}build${/}control-base.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "svdFile": "STM32F407.svd",
+            "servertype": "openocd", //GDB server
+            "configFiles": [
+                "${workspaceRoot}${/}config${/}openocd_stlink.cfg" // config
+            ],
+            //"runToEntryPoint": "main", // stop at main
+            "rtos": "FreeRTOS",
+            "liveWatch": {
+                "enabled": true,
+                "samplesPerSecond": 4
+            },
+            "preLaunchTask": "build" // build before debug
+        }
+    ]
+}
