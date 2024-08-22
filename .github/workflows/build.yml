@@ -11,20 +11,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          submodules: "recursive"
-
-      - name: Cache ARM GCC Toolchain
-        uses: actions/cache@v3
-        with:
-          path: /usr/local/arm-toolchain
-          key: ${{ runner.os }}-arm-toolchain
+          submodules: "recursive" # Ensure submodules are checked out
 
       - name: Install ARM GCC Toolchain
         run: |
-          sudo mkdir -p /usr/local/arm-toolchain
           sudo apt-get update
           sudo apt-get install -y gcc-arm-none-eabi make
-        if: steps.cache.outputs.cache-hit != 'true'
 
       - name: Build project
         run: |
