@@ -5,8 +5,8 @@ TARGET = swerve-standard
 
 BOARD = typec
 
-CONTROL_BASE = control-base/
-BOARD_BASE = $(CONTROL_BASE)${BOARD}-board-base
+CONTROL_BASE = control-base
+BOARD_BASE = $(CONTROL_BASE)/${BOARD}-board-base
 
 ifeq ($(BOARD), typec)
 	STARTUP_POSTFIX = stm32f407xx
@@ -82,11 +82,11 @@ $(BOARD_BASE)/Middlewares/Third_Party/FreeRTOS/Source/timers.c \
 $(BOARD_BASE)/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c \
 $(BOARD_BASE)/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c \
 $(BOARD_BASE)/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c \
-$(wildcard $(BOARD_BASE)algo/src/*.c) \
-$(wildcard $(BOARD_BASE)bsp/src/*.c) \
-$(wildcard $(BOARD_BASE)devices/src/*.c) \
+$(wildcard $(CONTROL_BASE)/algo/src/*.c) \
+$(wildcard $(CONTROL_BASE)/bsp/src/*.c) \
+$(wildcard $(CONTROL_BASE)/devices/src/*.c) \
 $(wildcard /app/src/*.c) \
-$(wildcard /ui/src/*.c) \
+$(wildcard /ui/src/*.c)
 
 # ASM sources
 ASM_SOURCES =  \
@@ -151,11 +151,11 @@ C_INCLUDES =  \
 -I$(BOARD_BASE)/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F \
 -I$(BOARD_BASE)/Drivers/CMSIS/Device/ST/STM32F4xx/Include \
 -I$(BOARD_BASE)/Drivers/CMSIS/Include \
--I$(CONTROL_BASE)algo/inc \
--I$(CONTROL_BASE)devices/inc \
--I$(CONTROL_BASE)bsp/inc \
--I$(CONTROL_BASE)app/inc \
--I$(CONTROL_BASE)ui/inc 
+-I$(CONTROL_BASE)/algo/inc \
+-I$(CONTROL_BASE)/devices/inc \
+-I$(CONTROL_BASE)/bsp/inc \
+-Iapp/inc \
+-Iui/inc 
 
 # compile gcc flags
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -fdata-sections -ffunction-sections
