@@ -1,13 +1,7 @@
 name: Build Project
 on:
-  push:
-    paths:
-      - "src/**"
-      - "lib/**"
+  push: # Triggers on every push to the repository
   pull_request:
-    paths:
-      - "src/**"
-      - "lib/**"
 
 jobs:
   build:
