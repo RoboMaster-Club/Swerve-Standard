@@ -12,20 +12,19 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: windows-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           submodules: "recursive" # Ensure submodules are checked out
 
-      - name: Set up MSYS2
-        uses: msys2/setup-msys2@v2
-        with:
-          update: true
-          install: mingw-w64-x86_64-arm-none-eabi-gcc make
+      - name: Install dependencies
+        run: |
+          brew update
+          brew install arm-none-eabi-gcc make
 
       - name: Build project
         run: |
-          make -j24 V=1
-        shell: msys2 {0}
+          make -j V=1
+        shell: bash
