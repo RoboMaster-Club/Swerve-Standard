@@ -281,10 +281,10 @@ ECHO_SUCCESS=echo "\033[32m[Success]\033[0m"
 
 download:
 	@echo "Attempting to use CMSIS-DAP..."
-	@openocd -d2 -f config/openocd_cmsis_dap.cfg -c init -c halt -c "program $(BUILD_DIR)/$(TARGET).bin 0x08000000 verify reset" -c "reset run" -c shutdown && \
+	@openocd -d2 -f control-base/config/openocd_cmsis_dap.cfg -c init -c halt -c "program $(BUILD_DIR)/$(TARGET).bin 0x08000000 verify reset" -c "reset run" -c shutdown && \
 	($(ECHO_SUCCESS) "Successfully programmed the device using CMSIS-DAP.") || \
 	($(ECHO_WARNING) "Failed to connect using CMSIS-DAP. Attempting to use STLink..." && \
-	openocd -d2 -f config/openocd_stlink.cfg -c init -c halt -c "program $(BUILD_DIR)/$(TARGET).bin 0x08000000 verify reset" -c "reset run" -c shutdown && \
+	openocd -d2 -f control-base/config/openocd_stlink.cfg -c init -c halt -c "program $(BUILD_DIR)/$(TARGET).bin 0x08000000 verify reset" -c "reset run" -c shutdown && \
 	($(ECHO_SUCCESS) "Successfully programmed the device using STLink.") || \
 	($(ECHO_WARNING) "Failed to connect using both CMSIS-DAP and STLink. Please check your connections and try again."))
 
